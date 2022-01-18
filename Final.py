@@ -2,14 +2,14 @@ import requests
 import json
 import math
 
-base_url = "http://10.10.239.113:8000/api/v1.0"
-tasks_url = "http://10.10.239.113:8000/api/v1.0/tasks"
-start_url = "http://10.10.239.113:8000/api/v1.0/start"
-answer_url = "http://10.10.239.113:8000/api/v1.0/answer"
+base_url = "http://**hide**/api/v1.0"
+tasks_url = "http://**hide**/api/v1.0/tasks"
+start_url = "http://**hide**/api/v1.0/start"
+answer_url = "http://**hide**/api/v1.0/answer"
 file = 'full_ascii.txt'
-decorator = 'decorator.py'
+decorator = 'Decorator.py'
 converter = 'Converter.py'
-dz_classmethod = 'new_last-task.py'
+dz_classmethod = 'Classmethod.py'
 
 
 def make_ascii(filename, part_ascii):
@@ -25,9 +25,6 @@ def get_task(url):
 
 def send_answer(taskname, answer):
     json_data = json.dumps({'name': taskname, 'values': answer})
-    print('--------------------------------------------------------------')
-    print(json_data)
-    print('--------------------------------------------------------------')
     response = requests.post(answer_url, json=json_data).json()
     print(f"Ответ: {response['answer']} \nСледующая задача: {base_url}{response['next_url']}")
     make_ascii(file, response['saveit'])
